@@ -19,6 +19,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import sg.edu.nus.iss.csf.server.models.Post;
 import sg.edu.nus.iss.csf.server.services.FileUploadService;
+import sg.edu.nus.iss.csf.server.services.S3Service;
 
 @Controller
 public class FileUploadController {
@@ -26,6 +27,9 @@ public class FileUploadController {
 
     @Autowired
     private FileUploadService fileUploadService;
+
+    @Autowired
+    private S3Service s3Service;
 
     @PostMapping(path="/api/upload",
         consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
@@ -38,6 +42,12 @@ public class FileUploadController {
         try{
             postId = fileUploadService.uploadFile(file, comments);
             System.out.println("Post ID: " + postId);
+            if(postId != null && !postId.isEmpty()){
+                System.out.println("Post ID: " + postId);
+                String s3EndpointUrl = this
+                                    .s3Service.upload(file, comments, postId);
+                System.out.println(s3EndpointUrl);
+            }
         }catch(SQLException | IOException e){
             return ResponseEntity
                         .badRequest().body(e.getMessage());

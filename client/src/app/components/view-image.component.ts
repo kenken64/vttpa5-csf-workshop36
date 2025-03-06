@@ -27,9 +27,7 @@ export class ViewImageComponent implements OnInit, OnDestroy{
     });
   } 
 
-  goBack(){
-    this.router.navigate(['']);
-  }
+  
 
   ngOnDestroy(): void {
       this.param$.unsubscribe();

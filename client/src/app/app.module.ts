@@ -9,12 +9,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material.module';
 import { UploadComponent } from './components/upload.component';
 import { ViewImageComponent } from './components/view-image.component';
+import { BackbuttonComponent } from './components/backbutton.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    ViewImageComponent
+    ViewImageComponent,
+    BackbuttonComponent
   ],
   imports: [
     BrowserModule,
