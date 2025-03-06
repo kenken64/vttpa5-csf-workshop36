@@ -54,10 +54,12 @@ public class FileUploadController {
     throws SQLException{
         Optional<Post> r = this.fileUploadService.getPostById(postId);
         Post p = r.get();
+        String comments = p.getComments();
         String encodedString = Base64.getEncoder()
                                 .encodeToString(p.getImage());
         JsonObject payload = Json.createObjectBuilder()
                             .add("image", BASE64_PREFIX + encodedString)
+                            .add("comments", comments)
                             .build();
         return ResponseEntity.ok(payload.toString());
     }

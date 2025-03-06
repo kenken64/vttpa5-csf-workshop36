@@ -12,6 +12,7 @@ export class ViewImageComponent implements OnInit, OnDestroy{
   postId="";
   param$!: Subscription;
   imageData: any;
+  comments!: string;
 
   private actRoute = inject(ActivatedRoute);
   private fileUploadSvc = inject(FileuploadService);
@@ -22,6 +23,7 @@ export class ViewImageComponent implements OnInit, OnDestroy{
       this.postId = params['postId'];
       let r = await this.fileUploadSvc.getImage(this.postId)
       this.imageData = r.image;
+      this.comments = r.comments;
     });
   } 
 
