@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { FileuploadService } from '../services/fileupload.service';
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrl: './upload.component.css'
+    selector: 'app-upload',
+    templateUrl: './upload.component.html',
+    styleUrl: './upload.component.css',
+    standalone: false
 })
 export class UploadComponent implements OnInit{
   form!: FormGroup;
